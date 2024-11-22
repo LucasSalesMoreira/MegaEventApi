@@ -1,0 +1,14 @@
+spring:
+  security:
+    user:
+      name: app-test-1
+      password: "@p2A&8iQlM71Cs7P0dIHFQJw8sLyTcQLGvaQgWVpw*RyuoY!@T"
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db4free.net:3306/valenota_staging
+    username: root_valenota
+    password: "ZATF70j3:y1MJ7+AY:p#_K70Q=q,8S;C"
+  jpa:
+    hibernate.ddl-auto: none
+    generate-ddl: false
+    show-sql: true

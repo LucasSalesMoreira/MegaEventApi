@@ -1,0 +1,3 @@
+package app.megaeventapi.service
+
+interface ICompanyService
