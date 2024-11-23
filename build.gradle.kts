@@ -40,10 +40,3 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
-tasks.withType<Jar> {
-	// Otherwise you'll get a "No main manifest attribute" error
-	manifest {
-		attributes["Main-Class"] = "app.megaeventapi.MegaEventApplication"
-	}
-}
