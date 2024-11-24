@@ -39,6 +39,12 @@ create table event (
     foreign key(owner_id) references user(id)
 );
 
+create table event_subscribe (
+    id varchar(36) primary key,
+    event_id varchar(36) not null,
+    user_id varchar(36) not null,
+);
+
 create table question (
 	id varchar(36) primary key,
     q varchar(255) not null,

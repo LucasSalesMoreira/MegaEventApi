@@ -6,5 +6,5 @@ data class EventForm(
         val price: Double,
         val name: String,
         val address: AddressForm,
-        var owner: String
+        var owner: String?
 )

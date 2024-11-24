@@ -7,6 +7,12 @@ object Message {
     val EVENT_DOES_NOT_BELONG_TO_USER: String
         get() = "O evento não pertence ao usuário!"
 
+    val EVENT_NOT_FOUND: String
+        get() = "O evento não foi encontrado!"
+
+    val ALREADY_SUBSCRIBED: String
+        get() = "O usuário já está inscrito no evento!"
+
     val USER_EXISTS: String
         get() = "Esse email já está em uso!"
 
