@@ -60,7 +60,13 @@ class EventService(
     override fun subscribe(id: String, user: User) {
         val event = this.eventRepository.findById(id).orElseThrow { EventNotFoundException() }
         if (this.eventSubscribeRepository.findByEventAndUser(event, user).isEmpty) {
-            this.eventSubscribeRepository.save(EventSubscribe(event, user))
+            if (event.subsNumber != null) {
+                if (this.eventSubscribeRepository.countByEvent(event) < event.subsNumber!!) {
+                    this.eventSubscribeRepository.save(EventSubscribe(event, user))
+                }
+            } else {
+                this.eventSubscribeRepository.save(EventSubscribe(event, user))
+            }
         } else {
             throw AlreadySubscribedAtEventException()
         }

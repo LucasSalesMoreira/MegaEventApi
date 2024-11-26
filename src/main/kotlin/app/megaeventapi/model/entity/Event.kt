@@ -25,6 +25,9 @@ class Event {
     @Column(name = "name")
     lateinit var name: String
 
+    @Column(name = "subs_number")
+    var subsNumber: Int? = null
+
     @OneToOne(cascade = [CascadeType.REMOVE, CascadeType.MERGE, CascadeType.PERSIST])
     @JoinColumn(name = "address_id")
     lateinit var address: Address
@@ -33,10 +36,11 @@ class Event {
     @JoinColumn(name = "owner_id")
     lateinit var owner: User
 
-    constructor(dateEvent: LocalDateTime, price: Double, name: String, address: Address) {
+    constructor(dateEvent: LocalDateTime, price: Double, name: String, subsNumber: Int?, address: Address) {
         this.dateEvent = dateEvent
         this.price = price
         this.name = name
+        this.subsNumber = subsNumber
         this.address = address
     }
 

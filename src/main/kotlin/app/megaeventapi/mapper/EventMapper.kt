@@ -10,6 +10,7 @@ class EventMapper {
             dateEvent = eventForm.dateEvent,
             price = eventForm.price,
             name = eventForm.name,
+            subsNumber = eventForm.subsNumber,
             address = AddressMapper().toAddress(eventForm.address)
     )
 
@@ -18,6 +19,7 @@ class EventMapper {
             dateEvent = event.dateEvent,
             price = event.price,
             name = event.name,
+            subsNumber = event.subsNumber,
             address = AddressMapper().toAddressDTO(event.address),
             company = CompanyDTO(
                 id = event.owner.id,

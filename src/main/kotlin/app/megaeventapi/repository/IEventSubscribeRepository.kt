@@ -10,4 +10,5 @@ import java.util.Optional
 @Repository
 interface IEventSubscribeRepository: CrudRepository<EventSubscribe, String> {
     fun findByEventAndUser(event: Event, user: User): Optional<EventSubscribe>
+    fun countByEvent(event: Event): Int
 }
