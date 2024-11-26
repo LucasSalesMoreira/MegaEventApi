@@ -1,6 +1,8 @@
 package app.megaeventapi.controller
 
 import app.megaeventapi.exception.EventException
+import app.megaeventapi.exception.EventNotFoundException
+import app.megaeventapi.exception.GenericErrorException
 import app.megaeventapi.model.dto.ErrorDTO
 import app.megaeventapi.model.feedback.Message.DEFAULT_ERROR
 import app.megaeventapi.model.form.EventForm
@@ -76,6 +78,23 @@ class EventController(
             ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null)
         }
     } catch (error: EventException) {
+        ResponseEntity.status(error.code).body(ErrorDTO(error.message!!))
+    } catch (error: Exception) {
+        ResponseEntity.internalServerError().body(ErrorDTO(DEFAULT_ERROR))
+    }
+
+    @PostMapping("/subscribe/{id}")
+    fun subscribe(
+        @PathVariable id: String,
+        @RequestHeader sessionToken: String
+    ) = try {
+        if (verifyToken(sessionToken)) {
+            this.eventService.subscribe(id, get(sessionToken).user!!)
+            ResponseEntity.noContent().build()
+        } else {
+            ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null)
+        }
+    } catch (error: GenericErrorException) {
         ResponseEntity.status(error.code).body(ErrorDTO(error.message!!))
     } catch (error: Exception) {
         ResponseEntity.internalServerError().body(ErrorDTO(DEFAULT_ERROR))

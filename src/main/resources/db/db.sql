@@ -32,11 +32,18 @@ create table event (
     date_event datetime not null,
     price double not null,
     name varchar(255) not null,
+    subs_number int,
     support_id varchar(36),
     address_id varchar(36) not null,
     owner_id varchar(36) not null,
     foreign key(address_id) references address (id),
     foreign key(owner_id) references user(id)
+);
+
+create table event_subscribe (
+    id varchar(36) primary key,
+    event_id varchar(36) not null,
+    user_id varchar(36) not null,
 );
 
 create table question (

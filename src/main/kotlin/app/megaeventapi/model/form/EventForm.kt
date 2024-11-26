@@ -5,6 +5,7 @@ data class EventForm(
         val dateEvent: LocalDateTime,
         val price: Double,
         val name: String,
+        val subsNumber: Int?,
         val address: AddressForm,
-        var owner: String
+        var owner: String?
 )
