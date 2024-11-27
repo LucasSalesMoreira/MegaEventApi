@@ -49,6 +49,12 @@ class EventService(
             .map { EventMapper().toEventDTO(it) }
     }
 
+    override fun listAll(id: String): List<EventDTO> {
+        return eventRepository.findAll()
+            .filter { it.owner.id != id }
+            .map { EventMapper().toEventDTO(it) }
+    }
+
     override fun delete(id: String, companyId: String) {
         val event = eventRepository.findById(id)
         if (event.get().owner.id == companyId)
