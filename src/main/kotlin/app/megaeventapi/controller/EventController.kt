@@ -67,6 +67,17 @@ class EventController(
         ResponseEntity.internalServerError().body(ErrorDTO(DEFAULT_ERROR))
     }
 
+    @GetMapping("/list-all")
+    fun listAll(@RequestHeader sessionToken: String) = try {
+        if (verifyToken(sessionToken)) {
+            ResponseEntity.ok(eventService.listAll(get(sessionToken).user!!.id))
+        } else {
+            ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null)
+        }
+    } catch (error: Exception) {
+        ResponseEntity.internalServerError().body(ErrorDTO(DEFAULT_ERROR))
+    }
+
     @DeleteMapping("/{id}")
     fun delete(
         @PathVariable id: String,
